@@ -52,8 +52,8 @@ const page = () => {
           const response = await axios.get(
             `/api/check-username-unique?username=${username}`
           );
-        //   console.log(response.data.message);
-        //   let message = response.data.message;
+          //   console.log(response.data.message);
+          //   let message = response.data.message;
           setUsernameMessage(response.data.message);
         } catch (error) {
           const AxiosError = error as AxiosError<ApiResponse>;
@@ -98,7 +98,7 @@ const page = () => {
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
             Welcome Back to True Feedback
           </h1>
-          <p className="mb-4">Sign in to continue your secret conversations</p>
+          <p className="mb-4">Sign up to continue your secret conversations</p>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 ">
