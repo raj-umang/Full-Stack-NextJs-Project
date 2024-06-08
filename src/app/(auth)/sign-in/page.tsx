@@ -57,7 +57,7 @@ const page = () => {
   };
 
   return (
-    <div className="flex justify-center items-center max-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
@@ -99,9 +99,9 @@ const page = () => {
         </Form>
         <div className="text-center mt-4">
           <p>
-            Already a member?{" "}
-            <Link href="/sign-in" className="text-blue-600 hover:text-blue-800">
-              Sign In
+            Not a member?{" "}
+            <Link href="/sign-up" className="text-blue-600 hover:text-blue-800">
+              Sign Up
             </Link>
           </p>
         </div>
