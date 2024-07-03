@@ -14,7 +14,7 @@ import { User } from "next-auth";
 import { useSession } from "next-auth/react";
 import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { AcceptMessagesSchema } from "@/schemas/acceptMessageSchema";
+import { AcceptMessageSchema } from "@/schemas/acceptMessageSchema";
 
 function UserDashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -30,7 +30,7 @@ function UserDashboard() {
   const { data: session } = useSession();
 
   const form = useForm({
-    resolver: zodResolver(AcceptMessagesSchema),
+    resolver: zodResolver(AcceptMessageSchema),
   });
 
   const { register, watch, setValue } = form;

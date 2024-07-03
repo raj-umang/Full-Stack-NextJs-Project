@@ -10,16 +10,6 @@ import messages from "@/messages.json";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Mail } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
-import { ThemeProvider } from "@/components/theme-provider";
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
-import { useTheme } from "@/app/(app)/theme-context";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import * as React from "react";
 
 type SliderProps = React.ComponentProps<typeof Slider>;
