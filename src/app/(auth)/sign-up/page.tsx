@@ -13,7 +13,6 @@ import { ApiResponse } from "@/types/ApiResponse";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -23,7 +22,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 
-const page = () => {
+export default function SignUpForm() {
   const [username, setUsername] = useState("");
   const [usernameMessage, setUsernameMessage] = useState("");
   const [isCheckingUsername, setIsCheckingUsername] = useState(false);
@@ -128,7 +127,7 @@ const page = () => {
                         : "text-red-500"
                     }`}
                   >
-                    Test {usernameMessage}
+                    {usernameMessage}
                   </p>
                   <FormMessage />
                 </FormItem>
@@ -184,6 +183,4 @@ const page = () => {
       </div>
     </div>
   );
-};
-
-export default page;
+}
