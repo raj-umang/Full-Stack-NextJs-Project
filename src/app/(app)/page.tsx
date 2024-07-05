@@ -24,7 +24,7 @@ export default function Home({ children }: any) {
             Exploring the Enigmatic Realm of Stealth Communications
           </h1>
           <p className="mt-3 md:mt-4 text-base md:text-lg">
-            Explore Mystery Message - Where your identity remains a secret.
+            Explore Feedback Fidelity - Where your identity remains a secret.
           </p>
         </section>
         <Carousel
@@ -64,7 +64,7 @@ export default function Home({ children }: any) {
       </main>
       {/* Footer */}
       <footer className="text-center p-4 md:p-6 bg-gray-900 text-white">
-        © 2023 True Feedback. All rights reserved.
+        © 2023 Feedback Fidelity. All rights reserved.
       </footer>
     </>
   );
