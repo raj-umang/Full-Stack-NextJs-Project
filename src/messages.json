@@ -1,17 +1,17 @@
 [
   {
-    "title": "Message from User123",
-    "content": "Hey, how are you doing today?",
+    "title": "Inquiry from JohnDoe",
+    "content": "Hello, how are you today?",
     "received": "10 minutes ago"
   },
   {
-    "title": "Message from SecretAdmirer",
-    "content": "I really liked your recent post!",
+    "title": "Feedback from EmmaSmith",
+    "content": "I found your recent post quite impressive.",
     "received": "2 hours ago"
   },
   {
-    "title": "Message from MysteryGuest",
-    "content": "Do you have any book recommendations?",
+    "title": "Question from MichaelBrown",
+    "content": "Could you recommend any good books?",
     "received": "1 day ago"
   }
 ]
