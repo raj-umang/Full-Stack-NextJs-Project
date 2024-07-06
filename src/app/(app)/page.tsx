@@ -10,15 +10,13 @@ import messages from "@/messages.json";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Mail } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
-import * as React from "react";
 
-type SliderProps = React.ComponentProps<typeof Slider>;
 
-export default function Home({ children }: any) {
+export default function Home() {
 
   return (
     <>
-      <main className="flex-grow flex flex-col items-center justify-center px-4 md:px-24 py-12 min-h-screen ">
+      <main className="flex-grow flex flex-col items-center justify-center px-4 md:px-24 py-12 ">
         <section className="text-center mb-8 md:mb-12 ">
           <h1 className="text-3xl md:text-5xl font-bold">
             Exploring the Enigmatic Realm of Stealth Communications
@@ -52,6 +50,7 @@ export default function Home({ children }: any) {
             ))}
           </CarouselContent>
         </Carousel>
+
         <div className="flex items-center space-x-4 pb-6 pt-6">
           <Skeleton className="h-12 w-12 rounded-full" />
           <div className="space-y-2">

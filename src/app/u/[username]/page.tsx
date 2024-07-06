@@ -25,6 +25,7 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 
 const specialChar = "||"; // for taking out sentences
+
 const parseStringMessages = (messageString: string): string[] => {
   return messageString.split(specialChar);
 };
@@ -70,6 +71,7 @@ const SendMessage = () => {
         description: response.data.message,
         variant: "default",
       });
+      form.reset({ ...form.getValues(), content: "" });
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
@@ -118,6 +120,7 @@ const SendMessage = () => {
                     {...field}
                   />
                 </FormControl>
+                <FormMessage/>
               </FormItem>
             )}
           />

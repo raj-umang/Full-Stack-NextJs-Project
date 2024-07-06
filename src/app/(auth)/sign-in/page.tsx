@@ -38,12 +38,21 @@ export default function SignUpForm() {
       password: data.password,
     });
     if (result?.error) {
-      toast({
-        title: "Login Failed",
-        description: "Incorrect username / password",
-        variant: "destructive",
-      });
+      if (result.error === "CredentialsSignin") {
+        toast({
+          title: "Login Failed",
+          description: "Incorrect username or password",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: result.error,
+          variant: "destructive",
+        });
+      }
     }
+
     if (result?.url) {
       router.replace("/dashboard");
     }
@@ -87,7 +96,9 @@ export default function SignUpForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit">Sign In</Button>
+            <Button className="w-full" type="submit">
+              Sign In
+            </Button>
           </form>
         </Form>
         <div className="text-center mt-4">

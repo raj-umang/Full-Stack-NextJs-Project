@@ -7,7 +7,8 @@ export async function POST(request: Request) {
 
   const { username, content } = await request.json();
   try {
-    const user = await UserModel.findOne({ username });
+    const user = await UserModel.findOne({ username }).exec();
+
     if (!user) {
       return Response.json(
         {
@@ -19,7 +20,7 @@ export async function POST(request: Request) {
     }
 
     //is user accepting the messages
-    if (!user.isAcceptingMessage) {
+    if (!user.isAcceptingMessages) {
       return Response.json(
         {
           success: false,
@@ -30,6 +31,7 @@ export async function POST(request: Request) {
     }
 
     const newMessage = { content, createdAt: new Date() };
+
     user.messages.push(newMessage as Message);
     await user.save();
 

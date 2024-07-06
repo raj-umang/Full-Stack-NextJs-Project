@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 
   // aap kon ho btao
   const session = await getServerSession(authOptions);
-  const user: User = session?.user as User;
+  const user: User = session?.user;
 
   if (!session || !session.user) {
     return Response.json(
@@ -65,7 +65,7 @@ export async function GET(request: Request) {
   await dbConnect();
 
   const session = await getServerSession(authOptions);
-  const user: User = session?.user as User;
+  const user: User = session?.user;
 
   if (!session || !session.user) {
     return Response.json(
@@ -77,10 +77,8 @@ export async function GET(request: Request) {
     );
   }
 
-  const userId = user._id;
-
   try {
-    const foundUser = await UserModel.findById(userId);
+    const foundUser = await UserModel.findById(user._id);
     if (!foundUser) {
       return Response.json(
         {
@@ -94,7 +92,7 @@ export async function GET(request: Request) {
     return Response.json(
       {
         success: true,
-        isAcceptingMessages: foundUser.isAcceptingMessage,
+        isAcceptingMessages: foundUser.isAcceptingMessages,
       },
       { status: 200 }
     );

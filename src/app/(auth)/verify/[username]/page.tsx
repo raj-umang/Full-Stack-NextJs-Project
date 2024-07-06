@@ -38,7 +38,7 @@ const VerifyAccount = () => {
         title: "Success",
         description: response.data.message,
       });
-      router.replace("sign-in");
+      router.replace("/sign-in");
     } catch (error) {
       console.error("Error in signup of user", error);
       const AxiosError = error as AxiosError<ApiResponse>;
@@ -76,7 +76,7 @@ const VerifyAccount = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit">Submit</Button>
+            <Button type="submit">Verify</Button>
           </form>
         </Form>
       </div>

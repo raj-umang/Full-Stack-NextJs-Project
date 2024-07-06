@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { signUpSchema } from "@/schemas/signUpSchema";
 import axios, { AxiosError } from "axios";
 import { ApiResponse } from "@/types/ApiResponse";
+import { useDebounce } from "usehooks-ts";
 import {
   Form,
   FormControl,
@@ -28,7 +29,8 @@ export default function SignUpForm() {
   const [isCheckingUsername, setIsCheckingUsername] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const debounced = useDebounceCallback(setUsername, 300);
+  const debouncedUsername = useDebounce(setUsername, 300);
+
   const { toast } = useToast();
   const router = useRouter();
 
@@ -44,12 +46,12 @@ export default function SignUpForm() {
 
   useEffect(() => {
     const checkUsernameUnique = async () => {
-      if (username) {
+      if (debouncedUsername) {
         setIsCheckingUsername(true);
-        setUsernameMessage("");
+        setUsernameMessage(""); //Resetting the message
         try {
-          const response = await axios.get(
-            `/api/check-username-unique?username=${username}`
+          const response = await axios.get<ApiResponse>(
+            `/api/check-username-unique?username=${debouncedUsername}`
           );
           //   console.log(response.data.message);
           //   let message = response.data.message;
@@ -65,7 +67,7 @@ export default function SignUpForm() {
       }
     };
     checkUsernameUnique();
-  }, [username]);
+  }, [debouncedUsername]);
 
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
     setIsSubmitting(true);
@@ -79,8 +81,11 @@ export default function SignUpForm() {
       setIsSubmitting(false);
     } catch (error) {
       console.error("Error in signup of user", error);
+
       const AxiosError = error as AxiosError<ApiResponse>;
+
       let errorMessage = AxiosError.response?.data.message;
+      ("There was a problem with your sign-up. Please try again.");
       toast({
         title: "Signup failed",
         description: errorMessage,
@@ -115,7 +120,7 @@ export default function SignUpForm() {
                       {...field}
                       onChange={(e) => {
                         field.onChange(e);
-                        debounced(e.target.value);
+                        setUsername(e.target.value);
                       }}
                     />
                   </FormControl>
@@ -141,6 +146,9 @@ export default function SignUpForm() {
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input placeholder="email" {...field} />
+                    <p className="text-muted text-gray-400 text-sm">
+                      We will send you a verification code
+                    </p>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -160,7 +168,7 @@ export default function SignUpForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit" disabled={isSubmitting}>
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please
